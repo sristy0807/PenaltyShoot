@@ -70,3 +70,16 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+PenaltyShootGame/Assets/TutorialInfo.meta
+PenaltyShootGame/Assets/TutorialInfo/Icons.meta
+PenaltyShootGame/Assets/TutorialInfo/Icons/Help_Icon.png
+PenaltyShootGame/Assets/TutorialInfo/Icons/Help_Icon.png.meta
+PenaltyShootGame/Assets/TutorialInfo/Icons/Mobile 3D.png
+PenaltyShootGame/Assets/TutorialInfo/Icons/Mobile 3D.png.meta
+PenaltyShootGame/Assets/TutorialInfo/Layout.wlt
+PenaltyShootGame/Assets/TutorialInfo/Layout.wlt.meta
+PenaltyShootGame/Assets/TutorialInfo/Scripts/Editor.meta
+PenaltyShootGame/Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs
+PenaltyShootGame/Assets/TutorialInfo/Scripts/Editor/ReadmeEditor.cs.meta
+PenaltyShootGame/Assets/TutorialInfo/Scripts/Readme.cs
+PenaltyShootGame/Assets/TutorialInfo/Scripts/Readme.cs.meta
