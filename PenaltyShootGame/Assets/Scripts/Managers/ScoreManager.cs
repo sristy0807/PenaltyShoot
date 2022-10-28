@@ -32,4 +32,9 @@ public class ScoreManager : MonoBehaviour
     {
         playerScore += score;
     }
+
+    public void DeductPowerUpScore(int score)
+    {
+        playerScore -= score;
+    }
 }

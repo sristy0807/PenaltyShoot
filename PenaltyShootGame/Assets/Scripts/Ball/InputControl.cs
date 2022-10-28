@@ -16,11 +16,13 @@ public class InputControl : MonoBehaviour
 
 	public float throwForceInXandY = 1f; 
 
-	public float throwForceInZ = 50f; 
+	public float throwForceInZ = 50f;
+
+	public float speed = 20;
 
 	Rigidbody rb;
 
-	private float speed=20;
+	
 
 	void Start()
 	{

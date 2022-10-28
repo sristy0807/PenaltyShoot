@@ -5,20 +5,26 @@ using UnityEngine;
 [RequireComponent(typeof (ItemMovement))]
 public class PowerUpBehavior : MonoBehaviour
 {
-    public int PowerUpValue;
+    public int PowerUpScoreValue;
 
     private ItemMovement itemMovement;
 
     [SerializeField] private bool isMovable;
     [SerializeField] private PowerUpTypes powerUpType;
-    [SerializeField] private Transform endPointTransform;
 
 
+    private PowerUpManager powerUpManager;
 
 
     private void Start()
     {
+        GetPowerUpManagerReference();
         InitiateMovementIfMovable();
+    }
+
+    private void GetPowerUpManagerReference()
+    {
+        powerUpManager = GameObject.FindObjectOfType<PowerUpManager>();
     }
 
     private void InitiateMovementIfMovable()
@@ -27,11 +33,25 @@ public class PowerUpBehavior : MonoBehaviour
 
         if (isMovable)
         {
-            itemMovement.MoveObject(endPointTransform.position.x, 1);
+            itemMovement.MoveObject(powerUpManager.endPointForMovingPowerUp.position.x, 1);
         }
     }
 
-   
+    public void ApplyPowerUpCollisionResult()
+    {
+        if(powerUpType == PowerUpTypes.scoreIncrementer)
+        {
+            powerUpManager.PowerUpScoreIncrement(PowerUpScoreValue);
+        }
+        else if(powerUpType == PowerUpTypes.destroyer)
+        {
+            powerUpManager.PowerUpScoreDeduction(PowerUpScoreValue);
+        }
+        else
+        {
+            return;
+        }
+    }
 
 }
 
