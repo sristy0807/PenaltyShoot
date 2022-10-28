@@ -20,6 +20,8 @@ public class InputControl : MonoBehaviour
 
 	Rigidbody rb;
 
+	private float speed=20;
+
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -53,11 +55,13 @@ public class InputControl : MonoBehaviour
 
 			endPos = Input.GetTouch(0).position;
 
+			//direction = startPos - endPos;
 			direction = startPos - endPos;
 
 			rb.isKinematic = false;
 
-			rb.AddForce(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ / timeInterval);
+			throwForceInZ += Time.deltaTime;
+			rb.AddForce(new Vector3(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ / timeInterval)*speed);
 
 			//Destroy (gameObject, 6f);
 
