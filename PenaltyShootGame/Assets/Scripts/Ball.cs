@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
 
         if (other.gameObject.CompareTag("PowerUp"))
         {
-			ScoreManager.instance.AddPowerUpScore(other.gameObject.GetComponent<PowerUp>().PowerUpValue);
+			ScoreManager.instance.AddPowerUpScore(other.gameObject.GetComponent<PowerUpBehavior>().PowerUpValue);
 		}
 
 
