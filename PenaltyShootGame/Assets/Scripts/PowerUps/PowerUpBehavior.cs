@@ -11,6 +11,7 @@ public class PowerUpBehavior : MonoBehaviour
 
     [SerializeField] private bool isMovable;
     [SerializeField] private PowerUpTypes powerUpType;
+    [SerializeField] private EndPoints endPoint;
 
 
     private PowerUpManager powerUpManager;
@@ -33,7 +34,19 @@ public class PowerUpBehavior : MonoBehaviour
 
         if (isMovable)
         {
-            itemMovement.MoveObject(powerUpManager.endPointForMovingPowerUp.position.x, 1);
+            switch (endPoint)
+            {
+                case EndPoints.endPoint1:
+                    itemMovement.MoveObjectHorizontally(powerUpManager.endPoint1.position.x, 1);
+                    break;
+                case EndPoints.endPoint2:
+                    itemMovement.MoveObjectHorizontally(powerUpManager.endPoint2.position.x, 2);
+                    break;
+                case EndPoints.endPoint3:
+                    itemMovement.MoveObjectHorizontally(powerUpManager.endPoint3.position.x, 3);
+                    break;
+            }
+            
         }
     }
 
@@ -62,3 +75,7 @@ public enum PowerUpTypes
     destroyer
 }
 
+public enum EndPoints
+{
+    endPoint1, endPoint2, endPoint3
+}

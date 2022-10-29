@@ -9,11 +9,13 @@ public class BallManager : MonoBehaviour
 
     [SerializeField] private GameObject currentBall;
 
+    //deduct turn after each shoot
     public void DeductBallTurn()
     {
         GameManager.instance.DeductTurn();
     }
 
+    //call new ball when previous turn is over
     public void BringNewBall()
     {
         if(currentBall == null)
@@ -27,15 +29,11 @@ public class BallManager : MonoBehaviour
         }
     }
 
-    public void ClearBall()
-    {
-        currentBall = null;
-    }
-
-    public void DestroyCurrentBall()
+    
+    private void DestroyCurrentBall()
     {
         GameObject ob = currentBall.gameObject;
-        ClearBall();
+        currentBall = null;
         Destroy(ob);
     }
 }

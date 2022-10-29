@@ -7,9 +7,9 @@ public class ItemMovement : MonoBehaviour
 {
 
 
-    public void MoveObject(float endPoint, float duration)
+    public void MoveObjectHorizontally(float endPoint, float duration)
     {
-        transform.DOMoveX(endPoint, 1)
+        transform.DOMoveX(endPoint, duration)
             .SetLoops(-1, LoopType.Yoyo)
             .SetEase(Ease.InOutSine);
 

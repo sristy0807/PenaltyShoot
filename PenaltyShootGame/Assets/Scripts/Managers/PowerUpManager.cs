@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour
 {
-    public Transform endPointForMovingPowerUp;
+    //power up moving position references
+    public Transform endPoint1;
+    public Transform endPoint2;
+    public Transform endPoint3;
 
     public void PowerUpScoreIncrement(int scoreValue)
     {
