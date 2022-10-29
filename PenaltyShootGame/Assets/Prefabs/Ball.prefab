@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwForceInXandY: 2
   throwForceInZ: 50
-  speed: 5
+  speed: 10
 --- !u!114 &-2633749940463818956
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,24 +4,47 @@ using UnityEngine;
 
 public class GameDataController : MonoBehaviour
 {
-   
-  
+
+    public static GameDataController instance;
 
     public TextAsset jsonFile;
 
+    public GameData gameData
+    {
+        get;
+        private set;
+    }
+
+    public GameConfig gameConfig
+    {
+        get;
+        private set;
+    }
+
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+
         LoadGameData();
     }
 
     void LoadGameData()
     {
 
-        GameData loadedData = JsonUtility.FromJson<GameData>(jsonFile.text);
-        GameConfig gameConfig = loadedData.gameConfig;
+        gameData = JsonUtility.FromJson<GameData>(jsonFile.text);
+        gameConfig = gameData.gameConfig;
 
-        Debug.Log(gameConfig.turns + " game config turns");
-        Debug.Log(" itrem score "+ loadedData.itemScore);
+        Debug.Log("turn: " + gameData.totalTurn + ", speed " + gameConfig.speed);
+
     }
 }
 
@@ -30,7 +53,7 @@ public class GameDataController : MonoBehaviour
 public class GameData
 {
     public GameConfig gameConfig;
-    public int itemScore;
+    public int totalTurn;
 }
 
 
@@ -38,7 +61,7 @@ public class GameData
 [System.Serializable]
 public class GameConfig
 {
-    public int turns;
+    public int scorePerGoal;
     public float speed;
 }
 

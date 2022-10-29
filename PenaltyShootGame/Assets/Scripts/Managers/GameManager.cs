@@ -15,13 +15,39 @@ public class GameManager : MonoBehaviour
         get; private set;
     }
 
-    [SerializeField] private int totalTurn = 5;
+    public int totalTurn
+    {
+        get;
+        private set;
+    }
+    public int scorePerGoal
+    {
+        get;
+        private set;
+    }
+    public float speed
+    {
+        get;
+        private set;
+    }
 
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
+        }
+
+        InitializeGameData();
+    }
+
+    public void InitializeGameData()
+    {
+        if(GameDataController.instance != null)
+        {
+            totalTurn = GameDataController.instance.gameData.totalTurn;
+            scorePerGoal = GameDataController.instance.gameConfig.scorePerGoal;
+            speed = GameDataController.instance.gameConfig.speed;
         }
     }
 
