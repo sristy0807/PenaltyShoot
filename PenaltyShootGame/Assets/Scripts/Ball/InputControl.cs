@@ -21,12 +21,8 @@ public class InputControl : MonoBehaviour
 
 	public float speed = 20;
 
-<<<<<<< Updated upstream
-	private bool tapped;
-=======
 	private bool tapped;	//check if current ball is tapped
 	private float SWIPE_THRESHOLD = 20f; //minimum swipe value
->>>>>>> Stashed changes
 
 	Rigidbody rb;   //rigidbody reference of the ball
 	
@@ -93,8 +89,6 @@ public class InputControl : MonoBehaviour
 
 
 }
-<<<<<<< Updated upstream
-=======
 
 
 
@@ -111,4 +105,3 @@ public class InputControl : MonoBehaviour
 
 
 
->>>>>>> Stashed changes
