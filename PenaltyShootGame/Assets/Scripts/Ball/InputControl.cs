@@ -7,23 +7,28 @@ public class InputControl : MonoBehaviour
 {
 	private BallManager ballManager;
 
-	private Vector2 startPos;
-	private Vector2 endPos;
-	private Vector2 direction;
+	private Vector2 startPos;  
+	private Vector2 endPos;    
+	private Vector2 direction; 
 
 	private float touchTimeStart; 
 	private float touchTimeFinish;
 	private float timeInterval;
 
-	public float throwForceInXandY = 1f; 
+	public float throwForceInXandY = 1f; //force multiplier for x and y axes
 
-	public float throwForceInZ = 50f;
+	public float throwForceInZ = 50f;    //force multiplier for z axis
 
 	public float speed = 20;
 
+<<<<<<< Updated upstream
 	private bool tapped;
+=======
+	private bool tapped;	//check if current ball is tapped
+	private float SWIPE_THRESHOLD = 20f; //minimum swipe value
+>>>>>>> Stashed changes
 
-	Rigidbody rb;
+	Rigidbody rb;   //rigidbody reference of the ball
 	
 	
 
@@ -88,3 +93,22 @@ public class InputControl : MonoBehaviour
 
 
 }
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
