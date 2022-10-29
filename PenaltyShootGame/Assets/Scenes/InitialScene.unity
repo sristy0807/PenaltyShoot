@@ -463,6 +463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScale: {x: 1.2, y: 1.2, z: 1.2}
   duration: 0.5
+  infiniteLoop: 1
 --- !u!1 &876112387
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScale: {x: 1.02, y: 1.02, z: 1.02}
   duration: 2
+  infiniteLoop: 1
 --- !u!1 &1485002585
 GameObject:
   m_ObjectHideFlags: 0

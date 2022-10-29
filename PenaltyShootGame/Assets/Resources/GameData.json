@@ -1,7 +1,7 @@
 {
-  "gameConfig": {
-    "turns": 5,
-    "speed": 2
-  },
-  "itemScore": 2
+    "gameConfig": {
+        "scorePerGoal": 1,
+        "speed": 10
+    },
+    "totalTurn": 8
 }
