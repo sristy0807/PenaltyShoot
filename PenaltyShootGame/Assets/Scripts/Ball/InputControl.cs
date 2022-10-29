@@ -21,8 +21,10 @@ public class InputControl : MonoBehaviour
 
 	public float speed = 20;
 
-	Rigidbody rb;
+	private bool tapped;
 
+	Rigidbody rb;
+	
 	
 
 	void Start()
@@ -39,6 +41,10 @@ public class InputControl : MonoBehaviour
     // Update is called once per frame
     void Update()
 	{
+		if (tapped)
+        {
+			return;
+        }
 
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
 		{
@@ -70,9 +76,11 @@ public class InputControl : MonoBehaviour
 
 			throwForceInZ += Time.deltaTime;
 			
-			rb.AddForce(new Vector3(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ / timeInterval)*speed);
+			rb.AddForce(new Vector3(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ * speed / timeInterval));
+			//TestUI.forceVal = new Vector3(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ * speed / timeInterval);
 			ballManager.DeductBallTurn();
-			Destroy(gameObject, 6f);
+			tapped = true;
+			Destroy(gameObject, 4f);
 
 		}
 
