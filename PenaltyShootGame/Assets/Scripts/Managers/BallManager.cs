@@ -9,11 +9,9 @@ public class BallManager : MonoBehaviour
 
     [SerializeField] private GameObject currentBall;
 
-
-
-    private void Start()
+    public void DeductBallTurn()
     {
-        BringNewBall();
+        GameManager.instance.DeductTurn();
     }
 
     public void BringNewBall()
@@ -22,11 +20,15 @@ public class BallManager : MonoBehaviour
         {
             currentBall = Instantiate(Ball, BallPosition.position, Quaternion.identity);
         }
+        else
+        {
+            DestroyCurrentBall();
+            currentBall = Instantiate(Ball, BallPosition.position, Quaternion.identity);
+        }
     }
 
     public void ClearBall()
     {
-        
         currentBall = null;
     }
 

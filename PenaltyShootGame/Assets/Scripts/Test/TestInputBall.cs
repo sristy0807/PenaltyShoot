@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class TestInputBall : MonoBehaviour
 {
-
-	private InputControl inputManager;
+    private BallManager ballManager;
+    private InputControl inputManager;
 
     public bool isTesting;
 
@@ -29,6 +29,7 @@ public class TestInputBall : MonoBehaviour
     {
 		rb = GetComponent<Rigidbody>();
 		inputManager = GetComponent<InputControl>();
+        ballManager = GameObject.FindObjectOfType<BallManager>();
     }
     private void Shoot()
     {
@@ -97,8 +98,8 @@ public class TestInputBall : MonoBehaviour
 
             throwForceInZ += Time.deltaTime;
             rb.AddForce(new Vector3(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ / timeInterval) * speed);
-
-            //Destroy (gameObject, 6f);
+            ballManager.DeductBallTurn();
+            Destroy(gameObject, 6f);
         }
     }
 

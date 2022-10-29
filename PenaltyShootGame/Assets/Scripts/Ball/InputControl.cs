@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class InputControl : MonoBehaviour
 {
+	private BallManager ballManager;
 
 	private Vector2 startPos;
 	private Vector2 endPos;
@@ -27,11 +28,16 @@ public class InputControl : MonoBehaviour
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
-		Debug.Log("swipe script");
+		ballManager = GameObject.FindObjectOfType<BallManager>();
 	}
 
-	// Update is called once per frame
-	void Update()
+    private void OnDestroy()
+    {
+		GameManager.instance.GetNewBall();
+    }
+
+    // Update is called once per frame
+    void Update()
 	{
 
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -63,9 +69,10 @@ public class InputControl : MonoBehaviour
 			rb.isKinematic = false;
 
 			throwForceInZ += Time.deltaTime;
+			
 			rb.AddForce(new Vector3(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ / timeInterval)*speed);
-
-			//Destroy (gameObject, 6f);
+			ballManager.DeductBallTurn();
+			Destroy(gameObject, 6f);
 
 		}
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
 	private BallManager ballManager;
+	private bool alreadyScored;
 
 
     private void Start()
@@ -13,31 +14,36 @@ public class Ball : MonoBehaviour
 	}
 
 
-
-
     private void OnCollisionEnter(Collision collision)
 	{
-		if (collision.gameObject.tag == "Goal")
-		{
-			ballManager.ClearBall();
-			ballManager.BringNewBall();
-			ScoreManager.instance.AddNormalGoal();
-            Destroy(gameObject);
-		}
+		
 	}
 
+	private void Scored()
+    {
+		ScoreManager.instance.AddNormalGoal();
+		
+	}
+
+	private void ScoredWithBonus(PowerUpBehavior powerUpBehavior)
+	{
+		powerUpBehavior.ApplyPowerUpCollisionResult();
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
-
-        if (other.gameObject.CompareTag("PowerUp"))
-        {
-			other.gameObject.GetComponent<PowerUpBehavior>().ApplyPowerUpCollisionResult();
+		if (other.gameObject.tag == "Goal")
+		{
+			if (!alreadyScored)
+			{
+				Scored();
+			}
 		}
 
-
-		ballManager.ClearBall();
-		ballManager.BringNewBall();
-		Destroy(gameObject);
+		if (other.gameObject.CompareTag("PowerUp"))
+        {
+			alreadyScored = true;
+			ScoredWithBonus(other.gameObject.GetComponent<PowerUpBehavior>());
+		}
 	}
 }
