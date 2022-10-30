@@ -69,13 +69,3 @@ public class PowerUpBehavior : MonoBehaviour
 }
 
 
-public enum PowerUpTypes
-{
-    scoreIncrementer,
-    destroyer
-}
-
-public enum EndPoints
-{
-    endPoint1, endPoint2, endPoint3
-}

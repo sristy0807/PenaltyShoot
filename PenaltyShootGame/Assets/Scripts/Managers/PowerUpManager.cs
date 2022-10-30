@@ -19,3 +19,14 @@ public class PowerUpManager : MonoBehaviour
         ScoreManager.instance.DeductPowerUpScore(scoreValue);
     }
 }
+
+public enum PowerUpTypes
+{
+    scoreIncrementer,
+    destroyer
+}
+
+public enum EndPoints
+{
+    endPoint1, endPoint2, endPoint3
+}

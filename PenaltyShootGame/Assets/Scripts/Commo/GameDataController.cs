@@ -43,7 +43,7 @@ public class GameDataController : MonoBehaviour
         gameData = JsonUtility.FromJson<GameData>(jsonFile.text);
         gameConfig = gameData.gameConfig;
 
-        Debug.Log("turn: " + gameData.totalTurn + ", speed " + gameConfig.speed);
+        //Debug.Log("turn: " + gameData.totalTurn + ", speed " + gameConfig.speed);
 
     }
 }
