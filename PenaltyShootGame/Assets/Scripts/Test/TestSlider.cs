@@ -25,11 +25,11 @@ public class TestSlider : MonoBehaviour
         value.text = slider.value.ToString();
         if (xy)
         {
-            inputManager.throwForceInXandY = slider.value;
+            //inputManager.throwForceInXandY = slider.value;
         }
         else
         {
-            inputManager.throwForceInZ = slider.value;
+            //inputManager.throwForceInZ = slider.value;
         }
     }
 }

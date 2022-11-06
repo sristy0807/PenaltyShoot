@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 
 public class InputControl : MonoBehaviour
 {
-	private BallManager ballManager;
 
 	private Vector2 startPos;
 	private Vector2 endPos;
@@ -15,39 +14,15 @@ public class InputControl : MonoBehaviour
 	private float touchTimeFinish;
 	private float timeInterval;
 
-	public float throwForceInXandY = 1f; 
-
-	public float throwForceInZ = 50f;
-
-	public float speed
-    {
-        get
-        {
-			return GameManager.instance.speed;
-        }
-    }
-
 	private bool tapped;
 	private float SWIPE_THRESHOLD = 20f;
 
-	Rigidbody rb;
-	
-	
 
-	void Start()
+
+	// Update is called once per frame
+	void Update()
 	{
-		rb = GetComponent<Rigidbody>();
-		ballManager = GameObject.FindObjectOfType<BallManager>();
-	}
-
-    private void OnDestroy()
-    {
-		GameManager.instance.GetNewBall();
-    }
-
-    // Update is called once per frame
-    void Update()
-	{
+#if UNITY_ANDROID && !UNITY_EDITOR
 		if (tapped)
         {
 			return;
@@ -63,12 +38,11 @@ public class InputControl : MonoBehaviour
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
 		{
 
-			// Check if finger is over a UI element
+			
 			if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
 			{
 				return;
 			}
-
 
 			touchTimeFinish = Time.time;
 			timeInterval = touchTimeFinish - touchTimeStart;
@@ -77,25 +51,45 @@ public class InputControl : MonoBehaviour
 			if(VerticalMoveValue()>SWIPE_THRESHOLD && HorizontalMoveValue() > SWIPE_THRESHOLD)
             {
 				direction = startPos - endPos;
-				rb.isKinematic = false;
-				throwForceInZ += Time.deltaTime;
-				rb.AddForce(new Vector3(-direction.x * throwForceInXandY, -direction.y * throwForceInXandY, throwForceInZ * speed / timeInterval));
-				ballManager.DeductBallTurn();
 				tapped = true;
-				Destroy(gameObject, 4f);
+				EventManager.ShotTaken(direction, timeInterval);
 			}
 			
 
 		}
+#elif UNITY_EDITOR
 
+		if (Input.GetMouseButton(0))
+        {
+            touchTimeStart = Time.time;
+            startPos = Input.mousePosition;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+           
+
+            touchTimeFinish = Time.time;
+
+            timeInterval = touchTimeFinish - touchTimeStart;
+
+            endPos = Input.mousePosition;
+
+            //direction = startPos - endPos;
+            direction = startPos - endPos;
+			EventManager.ShotTaken(direction, timeInterval);
+            
+        }
+    
+#endif
 	}
 
-    float VerticalMoveValue()
+	private float VerticalMoveValue()
     {
         return (endPos.y - startPos.y);
     }
 
-    float HorizontalMoveValue()
+    private float HorizontalMoveValue()
     {
         return Mathf.Abs(startPos.x - endPos.x);
     }

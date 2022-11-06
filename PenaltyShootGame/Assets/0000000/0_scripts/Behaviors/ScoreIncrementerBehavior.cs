@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class ScoreIncrementerBehavior : MonoBehaviour,IScoreItem
 {
-    public void AddScoreValue(bool isIncrementer, int scoreValue)
+    public int scoreValue;
+    public bool isIncrementer;
+
+    public void AddScoreValue(bool _isIncrementer, int _scoreValue)
     {
-        
+        if (_isIncrementer)
+        {
+            EventManager.BonusScore(_scoreValue);
+        }
+        else
+        {
+            EventManager.NegativeScore(_scoreValue);
+        }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(other.gameObject.tag == "Player")
+        {
+            AddScoreValue(isIncrementer,scoreValue);
+        }
     }
 }

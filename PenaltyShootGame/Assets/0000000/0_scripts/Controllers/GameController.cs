@@ -19,6 +19,9 @@ public class GameController : MonoBehaviour
         EventManager.GameStart += OnGameStart;
         EventManager.BallScored += OnScoreUpdate;
         EventManager.BonusItemTouched += OnScoreUpdate;
+        EventManager.NegativeItemTouched += OnScoreDamage;
+        EventManager.UseTurn += OnTurnUpdate;
+        EventManager.ShotComplete += OnShotComplete;
     }
 
     private void OnDisable()
@@ -26,6 +29,9 @@ public class GameController : MonoBehaviour
         EventManager.GameStart -= OnGameStart;
         EventManager.BallScored -= OnScoreUpdate;
         EventManager.BonusItemTouched -= OnScoreUpdate;
+        EventManager.NegativeItemTouched -= OnScoreDamage;
+        EventManager.UseTurn -= OnTurnUpdate;
+        EventManager.ShotComplete -= OnShotComplete;
     }
 
     private void Start()
@@ -33,9 +39,7 @@ public class GameController : MonoBehaviour
         EventManager.StartGame();
     }
 
-
-
-
+    //initialize turn, score count and call UI initialization
     private void InitializeGameData()
     {
         if(GameDataController.instance != null)
@@ -53,6 +57,7 @@ public class GameController : MonoBehaviour
     private void OnGameStart()
     {
         InitializeGameData();
+        EventManager.NewBallCalled();
     }
 
     private void OnScoreUpdate(int _score)
@@ -81,13 +86,17 @@ public class GameController : MonoBehaviour
     {
         if (numberOfTurnRemaining == 0)
         {
-            EventManager.EndGame();
+            EventManager.EndGame(score);
+        }
+        else
+        {
+            EventManager.NewBallCalled();
         }
     }
 
     private void OnGameOver()
     {
-
+        currentGameState = GameStates.gameComplete;
     }
 }
 

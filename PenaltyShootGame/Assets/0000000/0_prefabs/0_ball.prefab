@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5480785963398538874}
   - component: {fileID: 6217244893695769507}
   - component: {fileID: 7757521632940640555}
+  - component: {fileID: 5973817756424321607}
+  - component: {fileID: 4315566980275949942}
   m_Layer: 0
   m_Name: 0_ball
   m_TagString: Player
@@ -110,3 +112,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91bab08a09df427091e85110b586976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwForceInXandY: 1
+  throwForceInZ: 10
+  speed: 0
+  regularScore: 0
+--- !u!114 &5973817756424321607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43693781460060267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf8a82a2533840b2b84f78b9cb8c245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &4315566980275949942
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43693781460060267}
+  serializedVersion: 2
+  m_Mass: 1.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2

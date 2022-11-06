@@ -6,10 +6,8 @@ using System;
 
 public class Ball : MonoBehaviour
 {
-	public static event Action<int> OnScored;
-	public static event Action OnMissed;
 
-	private bool alreadyScored;
+	public bool alreadyScored { get; private set; }
 
 
     private void Start()
@@ -23,31 +21,32 @@ public class Ball : MonoBehaviour
 		
 	}
 
-	private void Scored()
+    private void Scored()
     {
-		ScoreManager.instance.AddNormalGoal();
-		
-	}
+        ScoreManager.instance.AddNormalGoal();
 
-	private void ScoredWithBonus(PowerUpBehavior powerUpBehavior)
-	{
-		powerUpBehavior.ApplyPowerUpCollisionResult();
-	}
+    }
 
-	private void OnTriggerEnter(Collider other)
+    private void ScoredWithBonus(PowerUpBehavior powerUpBehavior)
+    {
+        powerUpBehavior.ApplyPowerUpCollisionResult();
+    }
+
+    private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Goal")
 		{
 			if (!alreadyScored)
 			{
+				alreadyScored = true;
 				Scored();
 			}
 		}
 
-		if (other.gameObject.CompareTag("PowerUp"))
+        if (other.gameObject.CompareTag("PowerUp"))
         {
-			alreadyScored = true;
-			ScoredWithBonus(other.gameObject.GetComponent<PowerUpBehavior>());
-		}
-	}
+            alreadyScored = true;
+            ScoredWithBonus(other.gameObject.GetComponent<PowerUpBehavior>());
+        }
+    }
 }
