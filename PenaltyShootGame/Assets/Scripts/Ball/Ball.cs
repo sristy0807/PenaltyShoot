@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 public class Ball : MonoBehaviour
 {
-	private BallManager ballManager;
+	public static event Action<int> OnScored;
+	public static event Action OnMissed;
+
 	private bool alreadyScored;
 
 
     private void Start()
     {
-		ballManager = GameObject.FindObjectOfType<BallManager>();
+
 	}
 
 

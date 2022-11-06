@@ -557,7 +557,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: game
+          m_StringArgument: MainGame
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &876112390
@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7780d3ac03d84b088bb735336ba080f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScale: {x: 1.02, y: 1.02, z: 1.02}
+  targetScale: {x: 1.05, y: 1.05, z: 1.05}
   duration: 2
   infiniteLoop: 1
 --- !u!1 &1485002585
