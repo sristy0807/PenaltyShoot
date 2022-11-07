@@ -7,6 +7,16 @@ public class ScoreIncrementerBehavior : MonoBehaviour,IScoreItem
     public int scoreValue;
     public bool isIncrementer;
 
+    private void OnEnable()
+    {
+        EventManager.ShotComplete += DestroyThisObject;    
+    }
+
+    private void OnDisable()
+    {
+        EventManager.ShotComplete -= DestroyThisObject;
+    }
+
     public void AddScoreValue(bool _isIncrementer, int _scoreValue)
     {
         if (_isIncrementer)
@@ -25,5 +35,10 @@ public class ScoreIncrementerBehavior : MonoBehaviour,IScoreItem
         {
             AddScoreValue(isIncrementer,scoreValue);
         }
+    }
+
+    public void DestroyThisObject()
+    {
+        Destroy(gameObject);
     }
 }
