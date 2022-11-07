@@ -2,24 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Load all game related data from json serialization
+/// singleton
+/// </summary>
+
 public class GameDataController : MonoBehaviour
 {
 
     public static GameDataController instance;
 
     public TextAsset jsonFile;
+    public GameData gameData { get; private set; }
+    public GameConfig gameConfig { get; private set; }
 
-    public GameData gameData
-    {
-        get;
-        private set;
-    }
-
-    public GameConfig gameConfig
-    {
-        get;
-        private set;
-    }
 
     private void Awake()
     {
@@ -37,13 +33,13 @@ public class GameDataController : MonoBehaviour
         LoadGameData();
     }
 
+
+    // get game data from json file 
     void LoadGameData()
     {
 
         gameData = JsonUtility.FromJson<GameData>(jsonFile.text);
         gameConfig = gameData.gameConfig;
-
-        //Debug.Log("turn: " + gameData.totalTurn + ", speed " + gameConfig.speed);
 
     }
 }

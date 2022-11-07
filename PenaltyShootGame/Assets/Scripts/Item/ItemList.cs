@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// this class is responsible for storing item list and pick item when needed
+/// </summary>
+
 public class ItemList : MonoBehaviour
 {
     public List<Item> items;
@@ -16,6 +20,8 @@ public class ItemList : MonoBehaviour
         }
     }
 
+
+    //item instantiated based on the passed item tag, and spawned in the passed position and rotation
     public GameObject GetItem(string itemTag, Vector3 position, Quaternion rotation)
     {
         if (!itemDictionary.ContainsKey(itemTag))

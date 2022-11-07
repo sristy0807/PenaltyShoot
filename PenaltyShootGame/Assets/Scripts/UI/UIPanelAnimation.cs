@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+/// <summary>
+/// this class is responsible for a do tween fade in/fade out animtion for a UI object with canvas group
+/// </summary>
+
 [RequireComponent(typeof(CanvasGroup))]
 public class UIPanelAnimation : MonoBehaviour
 {
@@ -18,6 +22,7 @@ public class UIPanelAnimation : MonoBehaviour
         FadeAnimation();
     }
 
+    //based on the fade type of the object animation is played
     private void FadeAnimation()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();

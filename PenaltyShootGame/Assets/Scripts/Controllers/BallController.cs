@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// This class is responsible for getting new ball when necessary and destroy when done
+/// </summary>
 public class BallController : MonoBehaviour
 {
-    [SerializeField] private GameObject BallPrefab;
-    [SerializeField] private Transform BallPosition;
-    [SerializeField] private GameObject currentBall;
+    [SerializeField] private GameObject BallPrefab; //the prefab to be instantiated
+    [SerializeField] private Transform BallPosition; // fixed position where the ball will be placed initially
+    [SerializeField] private GameObject currentBall; //reference of the current active ball
 
-    private GameDataController gameDataController;
-    private float ballSpeed;
+    private GameDataController gameDataController;  //reference of singleton for getting ball data
+
+    // Ball data 
+    private float ballSpeed; 
     private int regularScore;
+
+
+    #region unity callbacks
 
     private void OnEnable()
     {
@@ -28,7 +37,9 @@ public class BallController : MonoBehaviour
     {
         EventManager.CallForNewBall -= OnCallForNewBall; 
     }
+    #endregion
 
+    //instantiate  new ball, set ball speed and per goal score
     public void OnCallForNewBall()
     {
         if (currentBall == null)
@@ -45,6 +56,7 @@ public class BallController : MonoBehaviour
         
     }
 
+    //Destroy the active ball
     private void DestroyCurrentBall()
     {
         GameObject ob = currentBall.gameObject;

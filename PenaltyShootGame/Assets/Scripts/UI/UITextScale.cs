@@ -4,11 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
+/// <summary>
+/// this class is responisble for ui text scaling animation
+/// </summary>
+
+
 public class UITextScale : MonoBehaviour
 {
     RectTransform rectTransform;
 
-    [SerializeField] private Vector3 targetScale;
+    //animation related fields
+    [SerializeField] private Vector3 targetScale; 
     [SerializeField] private float duration;
     [SerializeField] private bool infiniteLoop;
 
@@ -17,6 +23,8 @@ public class UITextScale : MonoBehaviour
         SetScaleAnimation();
     }
 
+
+    //scale animation based on target scale and duration, animation loop determined from object's infiniteloop value otherwise 2loops 
     private void SetScaleAnimation()
     {
         if (infiniteLoop)

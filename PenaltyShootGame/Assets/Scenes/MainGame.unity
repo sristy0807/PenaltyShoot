@@ -750,7 +750,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InitialPanel: {fileID: 589128655}
-  DamageAnimation: {fileID: 0}
   TurnsCountText: {fileID: 1608004743}
   ScoreCountText: {fileID: 1714755500}
   gameOverUI:
@@ -2403,7 +2402,7 @@ MonoBehaviour:
   itemList: {fileID: 0}
   positionXmax: 10
   positionXmin: -10
-  positionYmax: 6.5
+  positionYmax: 5
   positionYmin: 1
   defaultZpos: 6.5
   spawnedItem: {fileID: 0}

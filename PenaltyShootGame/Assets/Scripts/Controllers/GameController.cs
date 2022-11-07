@@ -3,16 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Game controller is responsible for controlling the gameplay by tracing score and turn numbers
+/// </summary>
+
 public class GameController : MonoBehaviour
 {
-    private int numberOfTurnRemaining;
+    private int numberOfTurnRemaining; 
     private int score;
-    private GameStates currentGameState;
-    
 
     #region script references
     [SerializeField] private UIController uIController;
     #endregion
+
+    #region unity callbacks
 
     private void OnEnable()
     {
@@ -39,6 +43,8 @@ public class GameController : MonoBehaviour
         EventManager.StartGame();
     }
 
+    #endregion
+
     //initialize turn, score count and call UI initialization
     private void InitializeGameData()
     {
@@ -54,34 +60,35 @@ public class GameController : MonoBehaviour
 
     #region Subscribed methods
 
+    //initialize game data and call for the first ball
     private void OnGameStart()
     {
         InitializeGameData();
         EventManager.NewBallCalled();
     }
 
+    // take the score point and add with the total score
     private void OnScoreUpdate(int _score)
     {
         score += _score;
         uIController.UpdateScoreText(score);
     }
 
+    // take the damage point to deduct from total score
     private void OnScoreDamage(int damagePoint)
     {
         score -= damagePoint;
         uIController.UpdateScoreText(score);
     }
 
+    // deduct turn 
     private void OnTurnUpdate()
     {
         numberOfTurnRemaining--;
         uIController.UpdateRemainingTurnText(numberOfTurnRemaining);
     }
 
-    #endregion
-
-
-
+    // check whether any turn remaining or not after each shot completed
     private void OnShotComplete()
     {
         if (numberOfTurnRemaining == 0)
@@ -94,14 +101,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void OnGameOver()
-    {
-        currentGameState = GameStates.gameComplete;
-    }
+    #endregion
+
+
+
+
 }
 
-enum GameStates
-{
-    gameRunning,
-    gameComplete
-}
