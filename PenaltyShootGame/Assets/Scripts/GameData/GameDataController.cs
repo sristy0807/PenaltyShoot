@@ -35,7 +35,7 @@ public class GameDataController : MonoBehaviour
 
 
     // get game data from json file 
-    void LoadGameData()
+    public void LoadGameData()
     {
 
         gameData = JsonUtility.FromJson<GameData>(jsonFile.text);

@@ -4,45 +4,27 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class Test
+public class GameDataTest
 {
-    
     // A Test behaves as an ordinary method
     [Test]
-    public void TestSimplePasses()
+    public void GameDataTestSimplePasses()
     {
-        
-        var jsonTextFile = Resources.Load<TextAsset>("GameData");
-        GameData gameData = JsonUtility.FromJson<GameData>(jsonTextFile.text);
-        
+        GameDataController gc = new GameDataController();
 
         // Use the Assert class to test conditions
-        Assert.AreEqual(gameData.totalTurn, 10);
+
+        Assert.AreEqual(sc, 1);
+      
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
     // `yield return null;` to skip a frame.
     [UnityTest]
-    public IEnumerator TestWithEnumeratorPasses()
+    public IEnumerator GameDataTestWithEnumeratorPasses()
     {
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
         yield return null;
     }
 }
-
-
-public class GameData
-{
-    public GameConfig gameConfig;
-    public int totalTurn;
-}
-
-
-public class GameConfig
-{
-    public int scorePerGoal;
-    public float speed;
-}
-
-
